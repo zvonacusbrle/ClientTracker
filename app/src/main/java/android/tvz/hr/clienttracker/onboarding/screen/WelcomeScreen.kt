@@ -18,12 +18,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 
 @OptIn(ExperimentalPagerApi::class)
@@ -41,11 +43,22 @@ fun WelcomeScreen(
 
     Column(modifier = Modifier.fillMaxSize()) {
         HorizontalPager(
+            modifier = Modifier.weight(10f),
             count = 3,
-            state = pagerState
+            state = pagerState,
+            verticalAlignment = Alignment.Top
         ) { position ->
             PagerScreen(onBoardingPage = screenPages[position])
         }
+        HorizontalPagerIndicator(
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .weight(1f),
+            pagerState = pagerState
+        )
+
+            
+
     }
 }
 
@@ -77,12 +90,19 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
             )
         }
         Text(text = onBoardingPage.title, fontSize = 28.sp)
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         Text(text = onBoardingPage.contentDescription, fontSize = 16.sp)
-        Spacer(modifier = Modifier.height(60.dp))
 
     }
 }
 
 val String.color
     get() = Color(parseColor(this))
+
+@Preview
+@Composable
+fun WelcomeScreenPreview(){
+
+        PagerScreen(onBoardingPage = OnBoardingPage.FirstScreen)
+
+}
