@@ -13,7 +13,6 @@ sealed class OnBoardingPage(
     val title: String,
     val contentDescription: String
 ) {
-
     object FirstScreen : OnBoardingPage(
         image =R.drawable.first_screen_onboarding_picture,
         title = "Check users quickly" ,
