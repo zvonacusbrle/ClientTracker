@@ -14,17 +14,17 @@ sealed class OnBoardingPage(
     val contentDescription: String
 ) {
     object FirstScreen : OnBoardingPage(
-        image =R.drawable.first_screen_onboarding_picture,
+        image =R.drawable.first_screen_onboarding_picture_10,
         title = "Check users quickly" ,
         contentDescription = "This app will allow you to check your clients in seconds"
     )
     object SecondScreen : OnBoardingPage(
-        image =R.drawable.second_screen_onboarding_picture,
+        image =R.drawable.second_screen_onboarding_picture_10,
         title =  "",
         contentDescription = "Insert or delete clients to update your client list"
     )
     object ThirdScreen : OnBoardingPage(
-        image = R.drawable.third_screen_onboarding_picture,
+        image = R.drawable.third_screen_onboarding_picture_10,
         title = "" ,
         contentDescription = "Thank you for installing this application"
     )

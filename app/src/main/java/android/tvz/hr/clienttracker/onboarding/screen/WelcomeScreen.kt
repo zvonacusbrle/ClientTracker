@@ -3,7 +3,6 @@ package android.tvz.hr.clienttracker.onboarding.screen
 import android.graphics.Color.parseColor
 import android.tvz.hr.clienttracker.onboarding.util.OnBoardingPage
 import android.tvz.hr.clienttracker.ui.theme.backgroundColor
-import android.view.LayoutInflater
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,12 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -56,9 +53,6 @@ fun WelcomeScreen(
                 .weight(1f),
             pagerState = pagerState
         )
-
-            
-
     }
 }
 
@@ -101,8 +95,7 @@ val String.color
 
 @Preview
 @Composable
-fun WelcomeScreenPreview(){
-
-        PagerScreen(onBoardingPage = OnBoardingPage.FirstScreen)
+fun WelcomeScreenPreview() {
+    PagerScreen(onBoardingPage = OnBoardingPage.FirstScreen)
 
 }
