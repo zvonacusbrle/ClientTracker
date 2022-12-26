@@ -1,14 +1,18 @@
 package android.tvz.hr.clienttracker.onboarding.screen
 
 import android.graphics.Color.parseColor
+import android.tvz.hr.clienttracker.navigation.Screen
 import android.tvz.hr.clienttracker.onboarding.util.OnBoardingPage
 import android.tvz.hr.clienttracker.ui.theme.backgroundColor
+import android.tvz.hr.clienttracker.ui.theme.light_purple
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -20,10 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.HorizontalPagerIndicator
-import com.google.accompanist.pager.rememberPagerState
+import com.google.accompanist.pager.*
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
@@ -38,7 +39,11 @@ fun WelcomeScreen(
 
     val pagerState = rememberPagerState()
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
         HorizontalPager(
             modifier = Modifier.weight(10f),
             count = 3,
@@ -53,6 +58,44 @@ fun WelcomeScreen(
                 .weight(1f),
             pagerState = pagerState
         )
+        FinishButton(
+            modifier = Modifier.weight(1f),
+            pagerState = pagerState
+        ) {
+            navController.popBackStack()
+            navController.navigate(Screen.Home.route)
+        }
+    }
+}
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+fun FinishButton(
+    modifier: Modifier,
+    pagerState: PagerState,
+    onClick: () -> Unit
+) {
+    Box(
+        modifier = modifier
+            .padding(5.dp)
+
+    ) {
+        AnimatedVisibility(
+            modifier = Modifier.fillMaxWidth(),
+            visible = pagerState.currentPage == 2
+        ) {
+            Button(
+                onClick = onClick,
+                modifier = Modifier
+                    .height(68.dp)
+                    .width(100.dp)
+                    .align(Alignment.Center)
+                    .background(MaterialTheme.colors.light_purple),
+            ) {
+                Text(text = "Finish", color = Color.White)
+            }
+        }
+
     }
 }
 
