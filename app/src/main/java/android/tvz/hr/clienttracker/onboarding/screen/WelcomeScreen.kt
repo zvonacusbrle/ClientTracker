@@ -3,8 +3,8 @@ package android.tvz.hr.clienttracker.onboarding.screen
 import android.graphics.Color.parseColor
 import android.tvz.hr.clienttracker.navigation.Screen
 import android.tvz.hr.clienttracker.onboarding.util.OnBoardingPage
+import android.tvz.hr.clienttracker.onboarding.util.OnboardingPrefs
 import android.tvz.hr.clienttracker.ui.theme.backgroundColor
-import android.tvz.hr.clienttracker.ui.theme.light_purple
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,15 +16,18 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.google.accompanist.pager.*
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
@@ -38,6 +41,9 @@ fun WelcomeScreen(
     )
 
     val pagerState = rememberPagerState()
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val dataStore = OnboardingPrefs(context)
 
     Column(
         modifier = Modifier
@@ -62,6 +68,9 @@ fun WelcomeScreen(
             modifier = Modifier.weight(1f),
             pagerState = pagerState
         ) {
+            scope.launch {
+                dataStore.saveOnboarding(completed = true)
+            }
             navController.popBackStack()
             navController.navigate(Screen.Home.route)
         }
@@ -90,7 +99,7 @@ fun FinishButton(
                     .height(68.dp)
                     .width(100.dp)
                     .align(Alignment.Center)
-                    .background(MaterialTheme.colors.light_purple),
+                    .background(MaterialTheme.colors.backgroundColor),
             ) {
                 Text(text = "Finish", color = Color.White)
             }

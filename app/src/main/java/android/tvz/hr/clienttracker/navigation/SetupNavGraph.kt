@@ -12,12 +12,16 @@ import androidx.navigation.compose.composable
 fun SetupNavGraph(
     navController: NavHostController,
     startDestination: String
-){
-    NavHost(navController = navController, startDestination = startDestination ){
-        composable(route = Screen.Welcome.route){
+) {
+    NavHost(
+        navController = navController,
+        startDestination = startDestination
+    ) {
+
+        composable(route = Screen.Welcome.route) {
             WelcomeScreen(navController = navController)
         }
-        composable(route = Screen.Home.route){
+        composable(route = Screen.Home.route) {
             HomeScreen()
         }
     }
