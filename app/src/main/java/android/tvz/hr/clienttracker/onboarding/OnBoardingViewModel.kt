@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,12 +17,13 @@ class OnBoardingViewModel @Inject constructor(
     private val onboardingPrefs: OnboardingPrefs
 ) : ViewModel(){
 
-    private val _startDestination: MutableState<String> = mutableStateOf(Screen.Welcome.route)
+    private val _startDestination: MutableState<String> = mutableStateOf(Screen.Splash.route)
     val startDestionation: State<String> = _startDestination
 
 
     init {
         viewModelScope.launch {
+            delay(2000L)
             onboardingPrefs.checkOnBoardingState().collect{ completed ->
                 if(completed){
                     _startDestination.value = Screen.Home.route

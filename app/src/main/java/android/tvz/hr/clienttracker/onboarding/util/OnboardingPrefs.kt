@@ -2,7 +2,6 @@ package android.tvz.hr.clienttracker.onboarding.util
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
@@ -17,7 +16,6 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
 class OnboardingPrefs(val context: Context) {
     companion object {
         const val ON_BOARDING_PREFS = "on_boarding_prefs"
-        val ONBOARD_KEY = booleanPreferencesKey("false")
     }
 
     private object PreferencesKey {
@@ -28,7 +26,7 @@ class OnboardingPrefs(val context: Context) {
 
     suspend fun saveOnboarding(completed: Boolean) {
         context.dataStore.edit { preferences ->
-            preferences[ONBOARD_KEY] = completed
+            preferences[PreferencesKey.onBoardingKey] = completed
         }
     }
 
@@ -39,6 +37,7 @@ class OnboardingPrefs(val context: Context) {
                 val onBoardingState = preferences[PreferencesKey.onBoardingKey] ?: false
                 onBoardingState
             }
+
     }
 
 }

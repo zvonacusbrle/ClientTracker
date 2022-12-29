@@ -2,9 +2,6 @@ package android.tvz.hr.clienttracker.onboarding.util
 
 import android.tvz.hr.clienttracker.R
 import androidx.annotation.DrawableRes
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 
 
 sealed class OnBoardingPage(

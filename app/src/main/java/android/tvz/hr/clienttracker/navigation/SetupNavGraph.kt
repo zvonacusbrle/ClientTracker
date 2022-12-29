@@ -2,6 +2,7 @@ package android.tvz.hr.clienttracker.navigation
 
 
 import android.tvz.hr.clienttracker.onboarding.screen.HomeScreen
+import android.tvz.hr.clienttracker.onboarding.screen.SplashScreen
 import android.tvz.hr.clienttracker.onboarding.screen.WelcomeScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -23,6 +24,9 @@ fun SetupNavGraph(
         }
         composable(route = Screen.Home.route) {
             HomeScreen()
+        }
+        composable(route = Screen.Splash.route) {
+            SplashScreen()
         }
     }
 }
