@@ -1,29 +1,28 @@
 package android.tvz.hr.clienttracker
 
 import android.os.Bundle
+import android.tvz.hr.clienttracker.navigation.SetupNavGraph
+import android.tvz.hr.clienttracker.onboarding.OnBoardingViewModel
+import android.tvz.hr.clienttracker.ui.theme.ClientTrackerTheme
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.activity.viewModels
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import android.tvz.hr.clienttracker.ui.theme.ClientTrackerTheme
+import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private val viewModel: OnBoardingViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ClientTrackerTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
+            ClientTrackerTheme() {
+                val startDestinationScreen = viewModel.startDestionation.value
+                val navController = rememberNavController()
+                SetupNavGraph(navController = navController, startDestination = startDestinationScreen)
             }
         }
     }
