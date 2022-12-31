@@ -3,6 +3,7 @@ package android.tvz.hr.clienttracker.user_registration.viewmodel
 import android.app.Application
 import android.content.ContentValues.TAG
 import android.tvz.hr.clienttracker.core.local.User
+import android.tvz.hr.clienttracker.navigation.Screen
 import android.tvz.hr.clienttracker.user_registration.domain.RegistrationFormEvent
 import android.tvz.hr.clienttracker.user_registration.domain.RegistrationFormState
 import android.tvz.hr.clienttracker.user_registration.domain.repository.ClientRepository
@@ -21,6 +22,8 @@ import android.tvz.hr.clienttracker.user_registration.viewmodel.use_case.Validat
 import android.tvz.hr.clienttracker.user_registration.viewmodel.use_case.ValidateRepeatedPassword
 import android.tvz.hr.clienttracker.user_registration.viewmodel.use_case.ValidateUsername
 import android.util.Log
+import androidx.navigation.NavHostController
+import kotlinx.coroutines.delay
 
 
 @HiltViewModel
@@ -29,7 +32,7 @@ class RegistrationViewModel @Inject constructor(
     private val validatePassword: ValidatePassword,
     private val validateRepeatedPassword: ValidateRepeatedPassword,
     private val applicationContext: Application,
-    private val clientRepository: ClientRepository
+    private val clientRepository: ClientRepository,
 ) : ViewModel() {
 
     var state by mutableStateOf(RegistrationFormState())

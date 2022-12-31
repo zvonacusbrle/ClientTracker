@@ -1,6 +1,8 @@
 package android.tvz.hr.clienttracker.user_registration.screen
 
 import android.tvz.hr.clienttracker.R
+import android.tvz.hr.clienttracker.navigation.Screen
+import android.tvz.hr.clienttracker.onboarding.util.OnBoardingPage.FirstScreen.contentDescription
 import android.tvz.hr.clienttracker.user_registration.viewmodel.RegistrationViewModel
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
@@ -32,12 +34,16 @@ import android.tvz.hr.clienttracker.user_registration.domain.RegistrationFormEve
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 
 
 @Composable
-fun RegisterUserScreen() {
+fun RegisterUserScreen(
+    navController: NavController
+) {
     val viewModel = hiltViewModel<RegistrationViewModel>()
 
     val state = viewModel.state
@@ -51,6 +57,8 @@ fun RegisterUserScreen() {
                         myContext.getString(R.string.registration_user_successfully_registered),
                         Toast.LENGTH_SHORT
                     ).show()
+                    navController.popBackStack()
+                    navController.navigate(Screen.Login.route)
                 }
                 is Result.Error -> {
                     Toast.makeText(
@@ -72,15 +80,21 @@ fun RegisterUserScreen() {
             .fillMaxSize()
     ) {
         Spacer(modifier = Modifier.height(40.dp))
-        Icon(
-            painter = painterResource(id = R.drawable.ic_baseline_arrow_back_24),
+        IconButton(
+            onClick = { navController.navigate(Screen.Login.route) },
             modifier = Modifier
                 .align(Alignment.Start)
                 .width(40.dp)
-                .height(30.dp),
-              //  .clickable { findNavController(registerUserFragment).navigate(R.id.action_registerUser_to_logIn) },
-            contentDescription = stringResource(id = R.string.register_user_button_back)
-        )
+                .height(30.dp)
+        ){
+            Icon(
+                imageVector = Icons.Rounded.ArrowBack,
+                contentDescription = stringResource(
+                    id = R.string.register_user_button_back,
+                ),
+
+            )
+        }
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
