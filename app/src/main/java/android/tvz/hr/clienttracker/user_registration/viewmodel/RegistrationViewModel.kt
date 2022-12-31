@@ -1,6 +1,7 @@
 package android.tvz.hr.clienttracker.user_registration.viewmodel
 
 import android.app.Application
+import android.content.ContentValues.TAG
 import android.tvz.hr.clienttracker.core.local.User
 import android.tvz.hr.clienttracker.user_registration.domain.RegistrationFormEvent
 import android.tvz.hr.clienttracker.user_registration.domain.RegistrationFormState
@@ -19,6 +20,7 @@ import android.tvz.hr.clienttracker.user_registration.Result
 import android.tvz.hr.clienttracker.user_registration.viewmodel.use_case.ValidatePassword
 import android.tvz.hr.clienttracker.user_registration.viewmodel.use_case.ValidateRepeatedPassword
 import android.tvz.hr.clienttracker.user_registration.viewmodel.use_case.ValidateUsername
+import android.util.Log
 
 
 @HiltViewModel
@@ -57,6 +59,8 @@ class RegistrationViewModel @Inject constructor(
         val passwordResult = validatePassword.execute(state.password,applicationContext)
         val repeatedPasswordResult = validateRepeatedPassword
             .execute(state.password, state.repeatedPassword, applicationContext)
+
+        Log.d(TAG, "submitData: $usernameResult $passwordResult $repeatedPasswordResult")
 
         val hasErrors = listOf(
             usernameResult,
