@@ -26,7 +26,7 @@ class OnBoardingViewModel @Inject constructor(
             delay(2000L)
             onboardingPrefs.checkOnBoardingState().collect{ completed ->
                 if(completed){
-                    _startDestination.value = Screen.Home.route
+                    _startDestination.value = Screen.Register.route
                 } else {
                     _startDestination.value = Screen.Welcome.route
                 }

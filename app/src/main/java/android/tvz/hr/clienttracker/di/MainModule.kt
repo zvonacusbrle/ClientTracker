@@ -1,6 +1,7 @@
 package android.tvz.hr.clienttracker.di
 
 import android.content.Context
+import android.tvz.hr.clienttracker.core.util.SessionManager
 import android.tvz.hr.clienttracker.onboarding.util.OnboardingPrefs
 import dagger.Module
 import dagger.Provides
@@ -17,4 +18,10 @@ object MainModule {
     fun provideOnboardingPrefs(
         @ApplicationContext context: Context
     ) = OnboardingPrefs(context = context)
+
+    @Singleton
+    @Provides
+    fun provideSessionManager(
+        @ApplicationContext context: Context
+    ) = SessionManager(context)
 }
