@@ -4,7 +4,6 @@ import android.graphics.Color.parseColor
 import android.tvz.hr.clienttracker.navigation.Screen
 import android.tvz.hr.clienttracker.onboarding.util.OnBoardingPage
 import android.tvz.hr.clienttracker.onboarding.util.OnboardingPrefs
-import android.tvz.hr.clienttracker.ui.theme.backgroundColor
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -65,8 +64,10 @@ fun WelcomeScreen(
             pagerState = pagerState
         )
         FinishButton(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .weight(1f),
             pagerState = pagerState
+
         ) {
             scope.launch {
                 dataStore.saveOnboarding(completed = true)
@@ -88,9 +89,11 @@ fun FinishButton(
         modifier = modifier
             .padding(5.dp)
 
+
     ) {
         AnimatedVisibility(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth(),
             visible = pagerState.currentPage == 2
         ) {
             Button(
@@ -99,7 +102,6 @@ fun FinishButton(
                     .height(68.dp)
                     .width(100.dp)
                     .align(Alignment.Center)
-                    .background(MaterialTheme.colors.backgroundColor),
             ) {
                 Text(text = "Finish", color = Color.White)
             }
@@ -123,7 +125,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
                 .fillMaxSize()
                 .aspectRatio(1f)
                 .background(
-                    color = MaterialTheme.colors.backgroundColor, shape = CircleShape
+                    color = MaterialTheme.colors.primary, shape = CircleShape
                 ),
             contentAlignment = Alignment.Center
         ) {
