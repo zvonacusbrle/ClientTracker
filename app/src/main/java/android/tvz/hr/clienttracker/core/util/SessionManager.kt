@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.first
 
 
 class SessionManager(val context: Context){
@@ -20,6 +21,14 @@ class SessionManager(val context: Context){
             preferences[nameKey] = name
         }
     }
+
+    suspend fun getJwtToken() : String? {
+        val jwtTokenKey = stringPreferencesKey(JWT_TOKEN_KEY)
+        val preferences = context.dataStore.data.first()
+        return preferences[jwtTokenKey]
+    }
+
+
 
 }
 

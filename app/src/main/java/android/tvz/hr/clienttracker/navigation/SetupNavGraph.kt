@@ -34,7 +34,7 @@ fun SetupNavGraph(
             RegisterUserScreen(navController = navController)
         }
         composable(route = Screen.Login.route){
-            LoginUserScreen()
+            LoginUserScreen(navController = navController)
         }
     }
 }

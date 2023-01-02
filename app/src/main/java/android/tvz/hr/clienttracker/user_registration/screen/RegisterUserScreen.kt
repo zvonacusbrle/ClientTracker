@@ -1,5 +1,6 @@
 package android.tvz.hr.clienttracker.user_registration.screen
 
+import androidx.compose.material3.MaterialTheme
 import android.tvz.hr.clienttracker.R
 import android.tvz.hr.clienttracker.navigation.Screen
 import android.tvz.hr.clienttracker.user_registration.Result
@@ -119,8 +120,8 @@ fun RegisterUserScreen(
             keyboardOptions = KeyboardOptions.Default,
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 errorCursorColor = Color.Red,
-                focusedBorderColor = MaterialTheme.colors.secondary,
-                unfocusedBorderColor = MaterialTheme.colors.primary
+                focusedBorderColor = MaterialTheme.colorScheme.secondary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary
             ),
             isError = state.usernameError != null,
             leadingIcon = { Icon(imageVector = Icons.Filled.Person, contentDescription = "Person icon")},
@@ -151,8 +152,8 @@ fun RegisterUserScreen(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 errorCursorColor = Color.Red,
-                focusedBorderColor = MaterialTheme.colors.secondary,
-                unfocusedBorderColor = MaterialTheme.colors.primary
+                focusedBorderColor = MaterialTheme.colorScheme.secondary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary
             ),
             isError = state.passwordError != null,
             leadingIcon = { Icon(imageVector = Icons.Filled.Lock, contentDescription = "Password icon")},
@@ -182,8 +183,8 @@ fun RegisterUserScreen(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 errorCursorColor = Color.Red,
-                focusedBorderColor = MaterialTheme.colors.secondary,
-                unfocusedBorderColor = MaterialTheme.colors.primary
+                focusedBorderColor = MaterialTheme.colorScheme.secondary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.primary
             ),
             isError = state.repeatedPasswordError != null,
             leadingIcon = { Icon(imageVector = Icons.Filled.Lock, contentDescription = "Password icon")},
@@ -202,10 +203,10 @@ fun RegisterUserScreen(
             onClick = {
                 viewModel.onEvent(RegistrationFormEvent.Submit)
             },
-            border = BorderStroke(1.dp, color = MaterialTheme.colors.primaryVariant),
+            border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.errorContainer),
             shape = RoundedCornerShape(50),
             colors = ButtonDefaults.outlinedButtonColors(
-                contentColor = MaterialTheme.colors.primaryVariant
+                contentColor = MaterialTheme.colorScheme.errorContainer
             )
         ) {
             Text(text = stringResource(id = R.string.register_user_register_button))

@@ -1,5 +1,6 @@
 package android.tvz.hr.clienttracker.onboarding.screen
 
+import androidx.compose.material3.MaterialTheme
 import android.graphics.Color.parseColor
 import android.tvz.hr.clienttracker.navigation.Screen
 import android.tvz.hr.clienttracker.onboarding.util.OnBoardingPage
@@ -12,7 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
+
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -125,7 +126,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
                 .fillMaxSize()
                 .aspectRatio(1f)
                 .background(
-                    color = MaterialTheme.colors.primary, shape = CircleShape
+                    color = MaterialTheme.colorScheme.primary, shape = CircleShape
                 ),
             contentAlignment = Alignment.Center
         ) {
