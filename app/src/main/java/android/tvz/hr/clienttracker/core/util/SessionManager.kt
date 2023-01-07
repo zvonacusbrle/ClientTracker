@@ -28,6 +28,24 @@ class SessionManager(val context: Context){
         return preferences[jwtTokenKey]
     }
 
+    suspend fun getCurrentUsername() : String? {
+        val nameKey = stringPreferencesKey(NAME_KEY)
+        val preferences = context.dataStore.data.first()
+        return preferences[nameKey]
+    }
+
+    suspend fun getCurrentPassword() : String? {
+        val passwordKey = stringPreferencesKey(PASSWORD_KEY)
+        val preferences = context.dataStore.data.first()
+        return preferences[passwordKey]
+    }
+
+    suspend fun logout(){
+        context.dataStore.edit {
+            it.clear()
+        }
+    }
+
 
 
 }
@@ -35,3 +53,4 @@ class SessionManager(val context: Context){
 const val SESSION_MANAGER = "session_manager"
 const val JWT_TOKEN_KEY = "JWT_TOKEN_KEY"
 const val NAME_KEY = "JWT_NAME_KEY"
+const val PASSWORD_KEY = "PASSWORD_KEY"

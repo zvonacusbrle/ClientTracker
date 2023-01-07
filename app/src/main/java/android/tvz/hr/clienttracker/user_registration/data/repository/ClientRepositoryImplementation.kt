@@ -3,9 +3,9 @@ package android.tvz.hr.clienttracker.user_registration.data.repository
 
 import android.tvz.hr.clienttracker.core.local.User
 import android.tvz.hr.clienttracker.core.remote.ClientTrackerApi
+import android.tvz.hr.clienttracker.core.util.Result
 import android.tvz.hr.clienttracker.core.util.SessionManager
 import android.tvz.hr.clienttracker.core.util.isNetworkConnected
-import android.tvz.hr.clienttracker.user_registration.Result
 import android.tvz.hr.clienttracker.user_registration.domain.repository.ClientRepository
 import javax.inject.Inject
 

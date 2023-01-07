@@ -30,4 +30,7 @@
     <string name="registration_user_problem_with_creation_of_user">Problem with creation of user</string>
     <string name="registration_user_successfully_registered">Successfully registered</string>
     <string name="registration_user_there_is_some_mistake_with_registration">There is an error with registration</string>
+
+    <string name="login_user">Login</string>
+    <string name="login_not_registered">Not registered? Register here</string>
 </resources>

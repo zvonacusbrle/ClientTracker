@@ -3,6 +3,8 @@ package android.tvz.hr.clienttracker.di
 import android.content.Context
 import android.tvz.hr.clienttracker.core.remote.ClientTrackerApi
 import android.tvz.hr.clienttracker.core.util.SessionManager
+import android.tvz.hr.clienttracker.login_user.data.repository.UserLoginRepositoryImplementation
+import android.tvz.hr.clienttracker.login_user.domain.repository.UserLoginRepository
 import android.tvz.hr.clienttracker.onboarding.util.OnboardingPrefs
 import android.tvz.hr.clienttracker.user_registration.data.repository.ClientRepositoryImplementation
 import android.tvz.hr.clienttracker.user_registration.domain.repository.ClientRepository
@@ -57,6 +59,17 @@ object MainModule {
         sessionManager: SessionManager
     ): ClientRepository {
         return ClientRepositoryImplementation(
+            clientTrackerApi,
+            sessionManager
+        )
+    }
+    @Singleton
+    @Provides
+    fun provideUserLoginRepository(
+        clientTrackerApi: ClientTrackerApi,
+        sessionManager: SessionManager
+    ): UserLoginRepository {
+        return UserLoginRepositoryImplementation(
             clientTrackerApi,
             sessionManager
         )

@@ -2,9 +2,7 @@ package android.tvz.hr.clienttracker.onboarding.util
 
 import android.tvz.hr.clienttracker.R
 import androidx.annotation.DrawableRes
-
 import androidx.compose.ui.graphics.Color
-import androidx.compose.material3.MaterialTheme
 
 
 sealed class OnBoardingPage(
