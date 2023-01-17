@@ -30,10 +30,10 @@ fun SetupNavGraph(
         composable(route = Screen.Splash.route) {
             SplashScreen()
         }
-        composable(route = Screen.Register.route){
+        composable(route = Screen.Register.route) {
             RegisterUserScreen(navController = navController)
         }
-        composable(route = Screen.Login.route){
+        composable(route = Screen.Login.route) {
             LoginUserScreen(navController = navController)
         }
     }

@@ -1,9 +1,11 @@
 package android.tvz.hr.clienttracker.login_user.screen
 
 import android.tvz.hr.clienttracker.R
+import android.tvz.hr.clienttracker.core.util.Result
 import android.tvz.hr.clienttracker.login_user.domain.LoginFormEvent
 import android.tvz.hr.clienttracker.login_user.viewmodel.LoginViewModel
 import android.tvz.hr.clienttracker.navigation.Screen
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,6 +19,7 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,18 +40,41 @@ import androidx.navigation.NavController
 @Composable
 fun LoginUserScreen(
     navController: NavController
-){
+) {
     val viewModel = hiltViewModel<LoginViewModel>()
 
     val state = viewModel.state
     val myContext = LocalContext.current
+    LaunchedEffect(key1 = myContext) {
+        viewModel.loginState.collect { result ->
+            when (result) {
+                is Result.Success -> {
+                    Toast.makeText(
+                        myContext,
+                        myContext.getString(R.string.login_user_is_logged_in),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    navController.popBackStack()
+                    navController.navigate(Screen.Home.route)
+                }
+                is Result.Error -> {
+                    Toast.makeText(
+                        myContext,
+                        myContext.getText(R.string.login_there_is_some_problem_with_logging),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is Result.Loading -> {}
+            }
+        }
+    }
     Column(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .verticalScroll(rememberScrollState())
             .fillMaxSize()
-    ){
+    ) {
         Spacer(modifier = Modifier.height(40.dp))
         Text(
             text = stringResource(id = R.string.login_user),
@@ -76,7 +102,12 @@ fun LoginUserScreen(
                 unfocusedBorderColor = MaterialTheme.colorScheme.primary
             ),
             isError = state.usernameError != null,
-            leadingIcon = { Icon(imageVector = Icons.Filled.Person, contentDescription = "Person icon") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Person,
+                    contentDescription = "Person icon"
+                )
+            },
         )
         if (state.usernameError != null) {
             Text(
@@ -107,7 +138,12 @@ fun LoginUserScreen(
                 unfocusedBorderColor = MaterialTheme.colorScheme.primary
             ),
             isError = state.passwordError != null,
-            leadingIcon = { Icon(imageVector = Icons.Filled.Lock, contentDescription = "Password icon")},
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Lock,
+                    contentDescription = "Password icon"
+                )
+            },
 
             )
         if (state.passwordError != null) {
@@ -121,6 +157,7 @@ fun LoginUserScreen(
         OutlinedButton(
             onClick = {
                 viewModel.onEvent(LoginFormEvent.Submit)
+
             },
             border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.errorContainer),
             shape = RoundedCornerShape(50),
@@ -142,19 +179,14 @@ fun LoginUserScreen(
         )
 
 
-
-
-
-
     }
 
 }
 
 
-
 @Composable
 @Preview
-fun LoginUserScreenPreview(){
+fun LoginUserScreenPreview() {
     val myContext = LocalContext.current
     val navController: NavController = NavController(myContext)
     LoginUserScreen(navController = navController)

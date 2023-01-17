@@ -4,5 +4,5 @@ import android.tvz.hr.clienttracker.core.local.User
 import android.tvz.hr.clienttracker.core.util.Result
 
 interface ClientRepository {
-    suspend fun registerUser(user: User) : Result<String>
+    suspend fun registerUser(user: User): Result<String>
 }

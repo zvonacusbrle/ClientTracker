@@ -8,10 +8,10 @@ import android.tvz.hr.clienttracker.core.util.isNetworkConnected
 import android.tvz.hr.clienttracker.login_user.domain.repository.UserLoginRepository
 import javax.inject.Inject
 
-class UserLoginRepositoryImplementation@Inject constructor(
+class UserLoginRepositoryImplementation @Inject constructor(
     private val clientTrackerApi: ClientTrackerApi,
     private val sessionManager: SessionManager
-    ) : UserLoginRepository {
+) : UserLoginRepository {
 
     override suspend fun loginUser(user: User): Result<String> {
         return try {
@@ -35,13 +35,12 @@ class UserLoginRepositoryImplementation@Inject constructor(
         return try {
             val name = sessionManager.getCurrentUsername()
             val password = sessionManager.getCurrentPassword()
-            if(name == null || password == null){
-               Result.Error<User>(errorMessage = "There is problem with user")
+            if (name == null || password == null) {
+                Result.Error<User>(errorMessage = "There is problem with user")
             }
             Result.Success(data = User(username = name!!))
 
-        }
-        catch (e: java.lang.Exception){
+        } catch (e: java.lang.Exception) {
             e.printStackTrace()
             Result.Error(errorMessage = e.message ?: "Problem")
         }
@@ -51,7 +50,7 @@ class UserLoginRepositoryImplementation@Inject constructor(
         return try {
             sessionManager.logout()
             Result.Success(errorMessage = "Logged out successfully")
-        } catch (e: java.lang.Exception){
+        } catch (e: java.lang.Exception) {
             e.printStackTrace()
             Result.Error(errorMessage = e.message ?: "Problem with log out")
         }

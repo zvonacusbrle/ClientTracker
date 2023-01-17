@@ -1,18 +1,22 @@
 package android.tvz.hr.clienttracker.login_user.viewmodel
 
 import android.app.Application
-import android.content.ContentValues
+import android.tvz.hr.clienttracker.core.local.User
+import android.tvz.hr.clienttracker.core.util.Result
 import android.tvz.hr.clienttracker.core.util.use_case.ValidatePassword
 import android.tvz.hr.clienttracker.core.util.use_case.ValidateUsername
 import android.tvz.hr.clienttracker.login_user.domain.LoginFormEvent
 import android.tvz.hr.clienttracker.login_user.domain.LoginFormState
 import android.tvz.hr.clienttracker.login_user.domain.repository.UserLoginRepository
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,6 +28,9 @@ class LoginViewModel @Inject constructor(
 ) : ViewModel() {
 
     var state by mutableStateOf(LoginFormState())
+
+    private val _loginState = MutableStateFlow<Result<String>>(Result.Loading())
+    val loginState = _loginState.asStateFlow()
 
     fun onEvent(event: LoginFormEvent) {
         when (event) {
@@ -57,6 +64,13 @@ class LoginViewModel @Inject constructor(
         }
 
 
+        loginUser(state.username, state.password)
+
+    }
+
+    private fun loginUser(username: String, password: String) = viewModelScope.launch {
+        val newUser = User(username, password)
+        _loginState.emit(userLoginRepository.loginUser(newUser))
     }
 
 }

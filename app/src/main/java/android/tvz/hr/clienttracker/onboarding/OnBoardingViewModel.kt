@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class OnBoardingViewModel @Inject constructor(
     private val onboardingPrefs: OnboardingPrefs
-) : ViewModel(){
+) : ViewModel() {
 
     private val _startDestination: MutableState<String> = mutableStateOf(Screen.Splash.route)
     val startDestionation: State<String> = _startDestination
@@ -24,8 +24,8 @@ class OnBoardingViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             delay(2000L)
-            onboardingPrefs.checkOnBoardingState().collect{ completed ->
-                if(completed){
+            onboardingPrefs.checkOnBoardingState().collect { completed ->
+                if (completed) {
                     _startDestination.value = Screen.Login.route
                 } else {
                     _startDestination.value = Screen.Welcome.route

@@ -63,6 +63,7 @@ object MainModule {
             sessionManager
         )
     }
+
     @Singleton
     @Provides
     fun provideUserLoginRepository(
@@ -76,4 +77,4 @@ object MainModule {
     }
 }
 
-const val BASE_URL = "http://192.168.1.4:8080/"
+const val BASE_URL = "http://192.168.1.5:8080/"

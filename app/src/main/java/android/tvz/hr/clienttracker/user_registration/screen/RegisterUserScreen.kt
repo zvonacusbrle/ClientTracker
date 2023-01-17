@@ -81,14 +81,14 @@ fun RegisterUserScreen(
                 .align(Alignment.Start)
                 .width(40.dp)
                 .height(30.dp)
-        ){
+        ) {
             Icon(
                 imageVector = Icons.Rounded.ArrowBack,
                 contentDescription = stringResource(
                     id = R.string.register_user_button_back,
                 ),
 
-            )
+                )
         }
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -124,7 +124,12 @@ fun RegisterUserScreen(
                 unfocusedBorderColor = MaterialTheme.colorScheme.primary
             ),
             isError = state.usernameError != null,
-            leadingIcon = { Icon(imageVector = Icons.Filled.Person, contentDescription = "Person icon")},
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Person,
+                    contentDescription = "Person icon"
+                )
+            },
         )
         if (state.usernameError != null) {
             Text(
@@ -156,9 +161,14 @@ fun RegisterUserScreen(
                 unfocusedBorderColor = MaterialTheme.colorScheme.primary
             ),
             isError = state.passwordError != null,
-            leadingIcon = { Icon(imageVector = Icons.Filled.Lock, contentDescription = "Password icon")},
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Lock,
+                    contentDescription = "Password icon"
+                )
+            },
 
-        )
+            )
         if (state.passwordError != null) {
             Text(
                 text = state.passwordError,
@@ -187,9 +197,14 @@ fun RegisterUserScreen(
                 unfocusedBorderColor = MaterialTheme.colorScheme.primary
             ),
             isError = state.repeatedPasswordError != null,
-            leadingIcon = { Icon(imageVector = Icons.Filled.Lock, contentDescription = "Password icon")},
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Lock,
+                    contentDescription = "Password icon"
+                )
+            },
 
-        )
+            )
 
         if (state.repeatedPasswordError != null) {
             Text(

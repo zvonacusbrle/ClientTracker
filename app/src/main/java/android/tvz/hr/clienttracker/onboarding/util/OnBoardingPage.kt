@@ -11,25 +11,27 @@ sealed class OnBoardingPage(
     val title: String,
     val contentDescription: String,
 
-) {
+    ) {
     object FirstScreen : OnBoardingPage(
         image = R.drawable.first_screen_onboarding_picture_10,
-        title = "Check users quickly" ,
+        title = "Check users quickly",
         contentDescription = "This app will allow you to check your clients in seconds",
 
-    )
+        )
+
     object SecondScreen : OnBoardingPage(
-        image =R.drawable.second_screen_onboarding_picture_10,
-        title =  "",
+        image = R.drawable.second_screen_onboarding_picture_10,
+        title = "",
         contentDescription = "Insert or delete clients to update your client list",
 
-    )
+        )
+
     object ThirdScreen : OnBoardingPage(
         image = R.drawable.third_screen_onboarding_picture_10,
-        title = "" ,
+        title = "",
         contentDescription = "Thank you for installing this application",
 
-    )
+        )
 }
 
 val String.color

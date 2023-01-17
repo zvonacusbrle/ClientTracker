@@ -56,7 +56,7 @@ class RegistrationViewModel @Inject constructor(
 
     private fun submitData() {
         val usernameResult = validateUsername.execute(state.username, applicationContext)
-        val passwordResult = validatePassword.execute(state.password,applicationContext)
+        val passwordResult = validatePassword.execute(state.password, applicationContext)
         val repeatedPasswordResult = validateRepeatedPassword
             .execute(state.password, state.repeatedPassword, applicationContext)
 
@@ -77,13 +77,13 @@ class RegistrationViewModel @Inject constructor(
             return
         }
 
-        createUser(state.username,state.password)
+        createUser(state.username, state.password)
 
     }
 
     private fun createUser(username: String, password: String) = viewModelScope.launch {
         _registerState.emit(Result.Loading())
-        val newUser = User(username,password)
+        val newUser = User(username, password)
         _registerState.emit(clientRepository.registerUser(newUser))
 
     }

@@ -10,11 +10,11 @@ interface ClientTrackerApi {
     @POST("/register")
     suspend fun registerAccount(
         @Body user: User
-    ) : RegisterResponse
+    ): RegisterResponse
 
     @Headers("Content-Type: application/json")
     @POST("/login")
     suspend fun loginAccount(
         @Body user: User
-    ) : RegisterResponse
+    ): RegisterResponse
 }
