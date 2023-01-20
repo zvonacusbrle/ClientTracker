@@ -22,7 +22,10 @@ class MainActivity : ComponentActivity() {
             ClientTrackerTheme() {
                 val startDestinationScreen = viewModel.startDestionation.value
                 val navController = rememberNavController()
-                SetupNavGraph(navController = navController, startDestination = startDestinationScreen)
+                SetupNavGraph(
+                    navController = navController,
+                    startDestination = startDestinationScreen
+                )
             }
         }
     }

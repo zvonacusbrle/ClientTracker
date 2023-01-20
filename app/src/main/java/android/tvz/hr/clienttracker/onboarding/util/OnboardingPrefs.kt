@@ -30,10 +30,9 @@ class OnboardingPrefs(val context: Context) {
         }
     }
 
-    fun checkOnBoardingState() : Flow<Boolean> {
+    fun checkOnBoardingState(): Flow<Boolean> {
         return dataStore.data
-            .map {
-                preferences ->
+            .map { preferences ->
                 val onBoardingState = preferences[PreferencesKey.onBoardingKey] ?: false
                 onBoardingState
             }

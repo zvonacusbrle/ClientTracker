@@ -11,4 +11,28 @@
 
     <string name="third_screen_content">Thank you for installing this application</string>
     <string name="finish_dialog_title">Congratulations</string>
+
+    <string name="register_user_button_back">Button back</string>
+    <string name="register_user_create_account">Create Account</string>
+    <string name="register_user_input_fields_bellow">Input fields bellow</string>
+    <string name="register_user_username">Username</string>
+    <string name="register_user_password">Password</string>
+    <string name="register_user_password_again">Input password again</string>
+    <string name="register_user_register_button">Register</string>
+    <string name="register_user_empty_user_field">User can\'t be blank</string>
+    <string name="register_user_username_field_to_short">Username should contain at least 4 characters</string>
+    <string name="register_user_blank_password">Password can\'t be empty</string>
+    <string name="register_user_password_lenght">Password needs to contain at least 6 characters and no more than 8</string>
+    <string name="register_user_different_passwords">Password are not the same</string>
+    <string name="registration_user_success">Registration successful</string>
+    <string name="registration_user_no_internet">No internet</string>
+    <string name="registration_user_user_created">User created</string>
+    <string name="registration_user_problem_with_creation_of_user">Problem with creation of user</string>
+    <string name="registration_user_successfully_registered">Successfully registered</string>
+    <string name="registration_user_there_is_some_mistake_with_registration">There is an error with registration</string>
+
+    <string name="login_user">Login</string>
+    <string name="login_not_registered">Not registered? Register here</string>
+    <string name="login_user_is_logged_in">User is logged in</string>
+    <string name="login_there_is_some_problem_with_logging">Problem with logging</string>
 </resources>

@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 
 @Composable
-fun SplashScreen(){
+fun SplashScreen() {
     Surface(color = Color.White, modifier = Modifier.fillMaxSize()) {
         val scale = remember {
             Animatable(0f)

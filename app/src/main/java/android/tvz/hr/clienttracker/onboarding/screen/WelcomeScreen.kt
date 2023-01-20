@@ -12,8 +12,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -73,7 +73,7 @@ fun WelcomeScreen(
                 dataStore.saveOnboarding(completed = true)
             }
             navController.popBackStack()
-            navController.navigate(Screen.Home.route)
+            navController.navigate(Screen.Login.route)
         }
     }
 }
@@ -125,7 +125,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
                 .fillMaxSize()
                 .aspectRatio(1f)
                 .background(
-                    color = MaterialTheme.colors.primary, shape = CircleShape
+                    color = MaterialTheme.colorScheme.primary, shape = CircleShape
                 ),
             contentAlignment = Alignment.Center
         ) {
