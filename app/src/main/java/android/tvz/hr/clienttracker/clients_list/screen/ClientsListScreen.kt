@@ -36,7 +36,7 @@ fun ClientsListScreen(
 fun ClientCardItem() {
     val painter =
         rememberImagePainter(
-            data = "https://www.pngitem.com/pimgs/m/150-1503945_transparent-user-png-default-user-image-png-png.png"
+            data = "https://gymbeam.cz/blog/wp-content/uploads/2016/09/RONNIE_COLEMAN.jpg"
         ) {
             placeholder(R.drawable.default_client_profile_image)
             error(R.drawable.default_client_profile_image)
@@ -70,7 +70,7 @@ fun ClientCardItem() {
                     .padding(all = 15.dp)
             ) {
                 Text(
-                    text = "Zvonimir",
+                    text = "Ronnie Coleman",
                     color = Color.White,
                     fontSize = MaterialTheme.typography.h5.fontSize,
                     fontWeight = FontWeight.Bold,

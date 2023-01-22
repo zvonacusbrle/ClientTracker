@@ -1,6 +1,7 @@
 package android.tvz.hr.clienttracker.di
 
 import android.content.Context
+import android.tvz.hr.clienttracker.core.local.ClientDatabase
 import android.tvz.hr.clienttracker.core.remote.ClientTrackerApi
 import android.tvz.hr.clienttracker.core.util.SessionManager
 import android.tvz.hr.clienttracker.login_user.data.repository.UserLoginRepositoryImplementation
@@ -8,6 +9,7 @@ import android.tvz.hr.clienttracker.login_user.domain.repository.UserLoginReposi
 import android.tvz.hr.clienttracker.onboarding.util.OnboardingPrefs
 import android.tvz.hr.clienttracker.user_registration.data.repository.ClientRepositoryImplementation
 import android.tvz.hr.clienttracker.user_registration.domain.repository.ClientRepository
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -75,6 +77,20 @@ object MainModule {
             sessionManager
         )
     }
+    @Singleton
+    @Provides
+    fun provideDatabase(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(
+        context,
+        ClientDatabase::class.java,
+        CLIENT_DATABASE
+    ).build()
+
+    @Singleton
+    @Provides
+    fun provideClientDao(clientDatabase: ClientDatabase) = clientDatabase.clientDao()
 }
 
 const val BASE_URL = "http://192.168.1.6:8080/"
+private const val CLIENT_DATABASE = "ClientDatabase"
