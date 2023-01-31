@@ -1,4 +1,4 @@
-package android.tvz.hr.clienttracker.core.util
+package android.tvz.hr.clienttracker.common.util
 
 import android.content.Context
 import android.net.ConnectivityManager

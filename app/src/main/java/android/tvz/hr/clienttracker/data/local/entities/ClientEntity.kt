@@ -1,4 +1,4 @@
-package android.tvz.hr.clienttracker.core.local.entities
+package android.tvz.hr.clienttracker.data.local.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

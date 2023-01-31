@@ -1,7 +1,7 @@
 package android.tvz.hr.clienttracker.user_registration.screen
 
 import android.tvz.hr.clienttracker.R
-import android.tvz.hr.clienttracker.core.util.Result
+import android.tvz.hr.clienttracker.common.util.Result
 import android.tvz.hr.clienttracker.navigation.Screen
 import android.tvz.hr.clienttracker.user_registration.domain.RegistrationFormEvent
 import android.tvz.hr.clienttracker.user_registration.viewmodel.RegistrationViewModel

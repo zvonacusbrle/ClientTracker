@@ -1,4 +1,4 @@
-package android.tvz.hr.clienttracker.core.util.use_case
+package android.tvz.hr.clienttracker.common.util.use_case
 
 import android.app.Application
 import android.tvz.hr.clienttracker.R

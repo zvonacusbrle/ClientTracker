@@ -1,6 +1,6 @@
-package android.tvz.hr.clienttracker.core.domain.model
+package android.tvz.hr.clienttracker.data.remote.model
 
-data class Client(
+data class ClientResponse(
     val id: Int,
     val name: String,
     val age: Int,

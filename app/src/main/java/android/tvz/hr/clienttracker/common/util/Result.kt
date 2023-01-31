@@ -1,4 +1,4 @@
-package android.tvz.hr.clienttracker.core.util
+package android.tvz.hr.clienttracker.common.util
 
 sealed class Result<T>(val data: T? = null, val errorMessage: String? = null) {
     class Success<T>(data: T? = null, errorMessage: String? = null) : Result<T>(data, errorMessage)

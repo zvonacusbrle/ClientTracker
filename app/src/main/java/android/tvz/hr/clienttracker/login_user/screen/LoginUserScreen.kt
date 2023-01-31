@@ -1,7 +1,7 @@
 package android.tvz.hr.clienttracker.login_user.screen
 
 import android.tvz.hr.clienttracker.R
-import android.tvz.hr.clienttracker.core.util.Result
+import android.tvz.hr.clienttracker.common.util.Result
 import android.tvz.hr.clienttracker.login_user.domain.LoginFormEvent
 import android.tvz.hr.clienttracker.login_user.viewmodel.LoginViewModel
 import android.tvz.hr.clienttracker.navigation.Screen

@@ -1,10 +1,10 @@
 package android.tvz.hr.clienttracker.login_user.viewmodel
 
 import android.app.Application
-import android.tvz.hr.clienttracker.core.local.User
-import android.tvz.hr.clienttracker.core.util.Result
-import android.tvz.hr.clienttracker.core.util.use_case.ValidatePassword
-import android.tvz.hr.clienttracker.core.util.use_case.ValidateUsername
+import android.tvz.hr.clienttracker.data.domain.model.User
+import android.tvz.hr.clienttracker.common.util.Result
+import android.tvz.hr.clienttracker.common.util.use_case.ValidatePassword
+import android.tvz.hr.clienttracker.common.util.use_case.ValidateUsername
 import android.tvz.hr.clienttracker.login_user.domain.LoginFormEvent
 import android.tvz.hr.clienttracker.login_user.domain.LoginFormState
 import android.tvz.hr.clienttracker.login_user.domain.repository.UserLoginRepository

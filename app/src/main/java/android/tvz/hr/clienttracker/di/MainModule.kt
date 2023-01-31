@@ -1,14 +1,14 @@
 package android.tvz.hr.clienttracker.di
 
 import android.content.Context
-import android.tvz.hr.clienttracker.core.local.ClientDatabase
-import android.tvz.hr.clienttracker.core.remote.ClientTrackerApi
-import android.tvz.hr.clienttracker.core.util.SessionManager
+import android.tvz.hr.clienttracker.data.local.database.ClientDatabase
+import android.tvz.hr.clienttracker.data.remote.ClientTrackerApi
+import android.tvz.hr.clienttracker.common.util.SessionManager
 import android.tvz.hr.clienttracker.login_user.data.repository.UserLoginRepositoryImplementation
 import android.tvz.hr.clienttracker.login_user.domain.repository.UserLoginRepository
 import android.tvz.hr.clienttracker.onboarding.util.OnboardingPrefs
-import android.tvz.hr.clienttracker.user_registration.data.repository.ClientRepositoryImplementation
-import android.tvz.hr.clienttracker.user_registration.domain.repository.ClientRepository
+import android.tvz.hr.clienttracker.user_registration.data.repository.UserRepositoryImplementation
+import android.tvz.hr.clienttracker.user_registration.domain.repository.UserRepository
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
@@ -59,8 +59,8 @@ object MainModule {
     fun provideClientRepository(
         clientTrackerApi: ClientTrackerApi,
         sessionManager: SessionManager
-    ): ClientRepository {
-        return ClientRepositoryImplementation(
+    ): UserRepository {
+        return UserRepositoryImplementation(
             clientTrackerApi,
             sessionManager
         )
