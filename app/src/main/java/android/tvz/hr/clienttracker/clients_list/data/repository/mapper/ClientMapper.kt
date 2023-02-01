@@ -13,3 +13,13 @@ fun ClientResponse.toClient(): Client {
         aboutUser = aboutUser
     )
 }
+
+fun Client.toClientEntity(): ClientEntity {
+    return ClientEntity(
+        id = id,
+        name = name,
+        age = age,
+        picture = picture,
+        aboutUser = aboutUser
+    )
+}
