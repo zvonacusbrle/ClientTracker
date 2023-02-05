@@ -2,9 +2,13 @@ package android.tvz.hr.clienttracker.clients_list.screen
 
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.net.Uri
 import android.tvz.hr.clienttracker.R
+import android.tvz.hr.clienttracker.clients_list.viewmodel.ClientListViewModel
 import android.tvz.hr.clienttracker.ui.theme.Shapes
+import android.tvz.hr.clienttracker.user_registration.viewmodel.RegistrationViewModel
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -22,9 +26,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import kotlinx.coroutines.launch
 
 
 @SuppressLint("UnrememberedMutableState")
@@ -32,7 +39,15 @@ import coil.compose.rememberImagePainter
 fun ClientsListScreen(
     navController: NavController
 ) {
-    ClientCardItem()
+    val viewModel = hiltViewModel<ClientListViewModel>()
+    val myContext = LocalContext.current
+    LaunchedEffect(key1 = myContext) {
+        viewModel.viewModelScope.launch {
+            Log.d(TAG, "ClientsListScreen: da")
+        }
+    }
+
+   // ClientCardItem()
 }
 
 @SuppressLint("UnrememberedMutableState")

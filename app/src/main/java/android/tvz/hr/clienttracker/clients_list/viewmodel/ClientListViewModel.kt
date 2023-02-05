@@ -1,6 +1,8 @@
 package android.tvz.hr.clienttracker.clients_list.viewmodel
 
+import android.content.ContentValues.TAG
 import android.tvz.hr.clienttracker.clients_list.domain.repository.ClientsRepository
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +17,8 @@ class ClientListViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val clients = clientsRepository.getAllClients()
-            clientsRepository.insertClients(clients)
+            Log.d(TAG, "$clients: ")
+           // clientsRepository.insertClients(clients. ?: emptyList())
         }
     }
 }

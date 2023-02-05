@@ -1,12 +1,15 @@
 package android.tvz.hr.clienttracker.data.remote
 
 import android.tvz.hr.clienttracker.common.util.Result
+import android.tvz.hr.clienttracker.data.domain.model.Client
 import android.tvz.hr.clienttracker.data.domain.model.User
 import android.tvz.hr.clienttracker.data.remote.model.ClientResponse
 import android.tvz.hr.clienttracker.data.remote.model.RegisterResponse
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
+
 
 interface ClientTrackerApi {
     @Headers("Content-Type: application/json")
@@ -22,7 +25,7 @@ interface ClientTrackerApi {
     ): RegisterResponse
 
     @Headers("Content-Type: application/json")
-    @POST("/clients")
-    fun getAllClients(): List<ClientResponse>
+    @GET("/clients")
+    suspend fun getAllClients(): List<Client>
 
 }

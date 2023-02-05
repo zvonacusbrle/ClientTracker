@@ -55,7 +55,7 @@ fun LoginUserScreen(
                         Toast.LENGTH_SHORT
                     ).show()
                     navController.popBackStack()
-                    navController.navigate(Screen.Home.route)
+                    navController.navigate(Screen.ClientsListScreen.route)
                 }
                 is Result.Error -> {
                     Toast.makeText(

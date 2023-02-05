@@ -7,7 +7,7 @@ import android.tvz.hr.clienttracker.data.remote.model.ClientResponse
 import kotlinx.coroutines.flow.Flow
 
 interface ClientsRepository {
-    fun getAllClients() : List<Client>
+   suspend fun getAllClients() : List<Client>
 
    suspend fun insertClients(clients: List<Client>)
 }
