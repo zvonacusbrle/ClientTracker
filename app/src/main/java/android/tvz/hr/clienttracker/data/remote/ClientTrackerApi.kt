@@ -26,6 +26,6 @@ interface ClientTrackerApi {
 
     @Headers("Content-Type: application/json")
     @GET("/clients")
-    suspend fun getAllClients(): List<Client>
+    suspend fun getClientsData(): List<ClientResponse>
 
 }

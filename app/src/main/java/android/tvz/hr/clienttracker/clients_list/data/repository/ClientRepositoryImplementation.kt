@@ -16,16 +16,14 @@ class ClientRepositoryImplementation @Inject constructor(
     private val clientTrackerApi: ClientTrackerApi,
     private val clientDao: ClientDao
 ) : ClientsRepository {
-
-
-    override suspend fun getAllClients(): List<Client> {
-        return clientTrackerApi.getAllClients()
+    override suspend fun getClientsData(): List<ClientResponse> {
+        return clientTrackerApi.getClientsData()
     }
 
-        override suspend fun insertClients(clients: List<Client>) {
-            clients.map { client ->
+        override suspend fun insertClients(clients: List<ClientResponse>) {
+            clients.map { clientResponse ->
                 clientDao.insertClient(
-                    client.toClientEntity()
+                    clientResponse.toClientEntity()
                 )
             }
         }

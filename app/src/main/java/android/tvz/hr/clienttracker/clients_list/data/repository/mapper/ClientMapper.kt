@@ -14,7 +14,7 @@ fun ClientResponse.toClient(): Client {
     )
 }
 
-fun Client.toClientEntity(): ClientEntity {
+fun ClientResponse.toClientEntity(): ClientEntity {
     return ClientEntity(
         id = id,
         name = name,
