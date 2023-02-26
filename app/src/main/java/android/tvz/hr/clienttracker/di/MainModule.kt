@@ -3,10 +3,10 @@ package android.tvz.hr.clienttracker.di
 import android.content.Context
 import android.tvz.hr.clienttracker.clients_list.data.repository.ClientRepositoryImplementation
 import android.tvz.hr.clienttracker.clients_list.domain.repository.ClientsRepository
-import android.tvz.hr.clienttracker.data.local.database.ClientDatabase
-import android.tvz.hr.clienttracker.data.remote.ClientTrackerApi
 import android.tvz.hr.clienttracker.common.util.SessionManager
+import android.tvz.hr.clienttracker.data.local.database.ClientDatabase
 import android.tvz.hr.clienttracker.data.local.entities.ClientDao
+import android.tvz.hr.clienttracker.data.remote.ClientTrackerApi
 import android.tvz.hr.clienttracker.login_user.data.repository.UserLoginRepositoryImplementation
 import android.tvz.hr.clienttracker.login_user.domain.repository.UserLoginRepository
 import android.tvz.hr.clienttracker.onboarding.util.OnboardingPrefs

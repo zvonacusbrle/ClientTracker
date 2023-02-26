@@ -2,11 +2,11 @@ package android.tvz.hr.clienttracker.user_registration.viewmodel
 
 import android.app.Application
 import android.content.ContentValues.TAG
-import android.tvz.hr.clienttracker.data.domain.model.User
 import android.tvz.hr.clienttracker.common.util.Result
 import android.tvz.hr.clienttracker.common.util.use_case.ValidatePassword
 import android.tvz.hr.clienttracker.common.util.use_case.ValidateRepeatedPassword
 import android.tvz.hr.clienttracker.common.util.use_case.ValidateUsername
+import android.tvz.hr.clienttracker.data.domain.model.User
 import android.tvz.hr.clienttracker.user_registration.domain.RegistrationFormEvent
 import android.tvz.hr.clienttracker.user_registration.domain.RegistrationFormState
 import android.tvz.hr.clienttracker.user_registration.domain.repository.UserRepository

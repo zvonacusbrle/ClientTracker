@@ -1,6 +1,5 @@
 package android.tvz.hr.clienttracker.data.local.entities
 
-import android.tvz.hr.clienttracker.data.domain.model.Client
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 

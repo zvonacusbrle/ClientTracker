@@ -7,7 +7,6 @@ import android.net.Uri
 import android.tvz.hr.clienttracker.R
 import android.tvz.hr.clienttracker.clients_list.viewmodel.ClientListViewModel
 import android.tvz.hr.clienttracker.ui.theme.Shapes
-import android.tvz.hr.clienttracker.user_registration.viewmodel.RegistrationViewModel
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -27,11 +26,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import kotlinx.coroutines.launch
 
 
 @SuppressLint("UnrememberedMutableState")
@@ -40,14 +37,19 @@ fun ClientsListScreen(
     navController: NavController
 ) {
     val viewModel = hiltViewModel<ClientListViewModel>()
-    val myContext = LocalContext.current
-    LaunchedEffect(key1 = myContext) {
-        viewModel.viewModelScope.launch {
-            Log.d(TAG, "ClientsListScreen: da")
-        }
+
+    val clientResponse = viewModel.clientResponse.value
+
+    if (clientResponse.data.isNotEmpty())
+        Log.d(TAG, "ClientsListScreen: ${clientResponse.data.get(0)}")
+
+    if (clientResponse.error.isNotEmpty())
+        Log.d(TAG, "ClientsListScreen: ERROR")
+
+    if (clientResponse.isLoading) {
+        Log.d(TAG, "ClientsListScreen: LOADING")
     }
 
-   // ClientCardItem()
 }
 
 @SuppressLint("UnrememberedMutableState")
@@ -59,8 +61,6 @@ fun ClientCardItem() {
     val context = LocalContext.current
 
 
-
-
     val painter =
         rememberImagePainter(
             data = "https://gymbeam.cz/blog/wp-content/uploads/2016/09/RONNIE_COLEMAN.jpg"
@@ -69,9 +69,10 @@ fun ClientCardItem() {
             error(R.drawable.default_client_profile_image)
         }
 
-    Box(modifier = Modifier
-        .height(CLIENT_ITEM_HEIGHT)
-        .clickable {},
+    Box(
+        modifier = Modifier
+            .height(CLIENT_ITEM_HEIGHT)
+            .clickable {},
         contentAlignment = Alignment.BottomStart
     ) {
         Surface(shape = Shapes.large) {

@@ -4,14 +4,12 @@ import android.tvz.hr.clienttracker.data.domain.model.Client
 import android.tvz.hr.clienttracker.data.local.entities.ClientEntity
 import android.tvz.hr.clienttracker.data.remote.model.ClientResponse
 
-fun ClientResponse.toClient(): Client {
+fun ClientEntity.toClient(): Client {
     return Client(
         id = id,
         name = name,
-        age = age,
         picture = picture,
-        aboutUser = aboutUser
-    )
+        )
 }
 
 fun ClientResponse.toClientEntity(): ClientEntity {

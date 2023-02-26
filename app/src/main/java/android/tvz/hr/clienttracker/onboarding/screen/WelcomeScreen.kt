@@ -1,11 +1,9 @@
 package android.tvz.hr.clienttracker.onboarding.screen
 
-import android.graphics.Color.parseColor
 import android.tvz.hr.clienttracker.navigation.Screen
 import android.tvz.hr.clienttracker.onboarding.util.OnBoardingPage
 import android.tvz.hr.clienttracker.onboarding.util.OnboardingPrefs
 import android.tvz.hr.clienttracker.ui.theme.dark_orange
-import android.tvz.hr.clienttracker.ui.theme.lightRed
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,7 +12,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable

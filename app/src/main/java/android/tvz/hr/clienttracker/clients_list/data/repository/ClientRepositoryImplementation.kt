@@ -5,8 +5,10 @@ import android.tvz.hr.clienttracker.clients_list.data.repository.mapper.toClient
 import android.tvz.hr.clienttracker.clients_list.domain.repository.ClientsRepository
 import android.tvz.hr.clienttracker.common.util.Result
 import android.tvz.hr.clienttracker.data.local.entities.ClientDao
+import android.tvz.hr.clienttracker.data.local.entities.ClientEntity
 import android.tvz.hr.clienttracker.data.remote.ClientTrackerApi
 import android.tvz.hr.clienttracker.data.remote.model.ClientResponse
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ClientRepositoryImplementation @Inject constructor(
@@ -33,4 +35,9 @@ class ClientRepositoryImplementation @Inject constructor(
             )
         }
     }
+
+    override fun getClients(): Flow<List<ClientEntity>> {
+        return clientDao.getClients()
+    }
+
 }
