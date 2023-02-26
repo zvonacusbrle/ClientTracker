@@ -1,7 +1,5 @@
 package android.tvz.hr.clienttracker.data.remote
 
-import android.tvz.hr.clienttracker.common.util.Result
-import android.tvz.hr.clienttracker.data.domain.model.Client
 import android.tvz.hr.clienttracker.data.domain.model.User
 import android.tvz.hr.clienttracker.data.remote.model.ClientResponse
 import android.tvz.hr.clienttracker.data.remote.model.RegisterResponse
