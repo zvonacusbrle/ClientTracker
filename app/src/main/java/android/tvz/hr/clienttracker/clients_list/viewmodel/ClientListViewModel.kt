@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -31,6 +32,7 @@ class ClientListViewModel @Inject constructor(
                     _clientResponse.value = ClientState(
                         isLoading = true
                     )
+                    delay(2000)
                 }.catch {
                     _clientResponse.value = ClientState(
                         error = it.message ?: "Something went wrong"

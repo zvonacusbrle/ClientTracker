@@ -50,8 +50,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:+'
-    implementation 'androidx.core:core-ktx:+'
     def room_version = "2.4.3"
 
     implementation 'androidx.core:core-ktx:1.9.0'
@@ -108,4 +106,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation 'androidx.room:room-ktx:2.4.3'
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }

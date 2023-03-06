@@ -3,32 +3,21 @@ package android.tvz.hr.clienttracker.clients_list.screen
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
-import android.net.Uri
-import android.tvz.hr.clienttracker.R
+import android.tvz.hr.clienttracker.clients_list.components.ClientCardItem
+import android.tvz.hr.clienttracker.clients_list.components.ClientCardItemShimmerEffect
 import android.tvz.hr.clienttracker.clients_list.viewmodel.ClientListViewModel
-import android.tvz.hr.clienttracker.ui.theme.Shapes
-import android.util.Log
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import android.tvz.hr.clienttracker.data.domain.model.Client
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.net.toUri
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
+import timber.log.Timber
 
 
 @SuppressLint("UnrememberedMutableState")
@@ -40,83 +29,43 @@ fun ClientsListScreen(
 
     val clientResponse = viewModel.clientResponse.value
 
-    if (clientResponse.data.isNotEmpty())
-        Log.d(TAG, "ClientsListScreen: ${clientResponse.data.get(0)}")
+    if (clientResponse.data.isNotEmpty()) {
+        ClientItemList(clientResponse.data)
+    }
 
     if (clientResponse.error.isNotEmpty())
-        Log.d(TAG, "ClientsListScreen: ERROR")
+        Timber.tag(TAG).d("ClientsListScreen: ERROR")
 
     if (clientResponse.isLoading) {
-        Log.d(TAG, "ClientsListScreen: LOADING")
+        ClientCardItemShimmerEffect()
     }
 
 }
 
-@SuppressLint("UnrememberedMutableState")
-@OptIn(ExperimentalCoilApi::class)
 @Composable
-fun ClientCardItem() {
-    val uri = "content://com.android.providers.media.documents/document/image%3A18".toUri()
-    var imageUri by remember { mutableStateOf<Uri?>(null) }
-    val context = LocalContext.current
-
-
-    val painter =
-        rememberImagePainter(
-            data = "https://gymbeam.cz/blog/wp-content/uploads/2016/09/RONNIE_COLEMAN.jpg"
-        ) {
-            placeholder(R.drawable.default_client_profile_image)
-            error(R.drawable.default_client_profile_image)
-        }
-
-    Box(
-        modifier = Modifier
-            .height(CLIENT_ITEM_HEIGHT)
-            .clickable {},
-        contentAlignment = Alignment.BottomStart
+fun ClientItemList(data: List<Client>) {
+    LazyColumn(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Surface(shape = Shapes.large) {
-            Image(
-                modifier = Modifier.fillMaxSize(),
-                painter = painter,
-                contentDescription = stringResource(R.string.client_screen_image_description),
-                contentScale = ContentScale.Crop
-            )
+        itemsIndexed(data) { index, client ->
+            ClientCardItem(client)
         }
-        Surface(
-            modifier = Modifier
-                .fillMaxHeight(0.2f)
-                .fillMaxWidth(),
-            color = Color.Black.copy(alpha = ContentAlpha.medium),
-            shape = RoundedCornerShape(
-                bottomStart = LARGE_PADDING,
-                bottomEnd = LARGE_PADDING
-            )
-        ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(all = 15.dp)
-            ) {
-                Text(
-                    text = "Ronnie Coleman",
-                    color = Color.White,
-                    fontSize = MaterialTheme.typography.h5.fontSize,
-                    fontWeight = FontWeight.Bold,
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1
-                )
-            }
-        }
-
     }
 }
+
+
 
 @Preview
 @Composable
 fun ClientCardPreview() {
-    ClientCardItem()
+    ClientCardItem(
+        client = Client(
+            1,
+            "Pero",
+            "https://img.mensxp.com/media/content/2018/Dec/the-king-ronnie-colemans-2018-documentary-is-quite-painful-to-watch-amp-yet-its-inspiring-1400x653-1545125563.jpg?w=820&h=540&cc=1"
+        )
+    )
 }
 
 val CLIENT_ITEM_HEIGHT = 350.dp
-val LARGE_PADDING = 20.dp
+val MEDIUM_PADDING = 15.dp
