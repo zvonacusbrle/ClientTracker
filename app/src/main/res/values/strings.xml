@@ -35,4 +35,5 @@
     <string name="login_not_registered">Not registered? Register here</string>
     <string name="login_user_is_logged_in">User is logged in</string>
     <string name="login_there_is_some_problem_with_logging">Problem with logging</string>
+    <string name="client_screen_image_description">User image</string>
 </resources>

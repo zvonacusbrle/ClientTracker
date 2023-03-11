@@ -1,9 +1,9 @@
 package android.tvz.hr.clienttracker.onboarding.screen
 
-import android.graphics.Color.parseColor
 import android.tvz.hr.clienttracker.navigation.Screen
 import android.tvz.hr.clienttracker.onboarding.util.OnBoardingPage
 import android.tvz.hr.clienttracker.onboarding.util.OnboardingPrefs
+import android.tvz.hr.clienttracker.ui.theme.dark_orange
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,8 +12,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -89,7 +89,6 @@ fun FinishButton(
         modifier = modifier
             .padding(5.dp)
 
-
     ) {
         AnimatedVisibility(
             modifier = Modifier
@@ -101,12 +100,12 @@ fun FinishButton(
                 modifier = Modifier
                     .height(68.dp)
                     .width(100.dp)
-                    .align(Alignment.Center)
+                    .align(Alignment.Center),
+                colors = ButtonDefaults.buttonColors(backgroundColor = dark_orange)
             ) {
                 Text(text = "Finish", color = Color.White)
             }
         }
-
     }
 }
 
@@ -125,7 +124,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
                 .fillMaxSize()
                 .aspectRatio(1f)
                 .background(
-                    color = MaterialTheme.colorScheme.primary, shape = CircleShape
+                    color = onBoardingPage.backgroundColor, shape = CircleShape
                 ),
             contentAlignment = Alignment.Center
         ) {
@@ -143,9 +142,6 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
 
     }
 }
-
-val String.color
-    get() = Color(parseColor(this))
 
 @Preview
 @Composable

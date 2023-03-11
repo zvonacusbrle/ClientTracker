@@ -1,4 +1,4 @@
-package android.tvz.hr.clienttracker.core.util.use_case
+package android.tvz.hr.clienttracker.common.util.use_case
 
 data class ValidationResults(
     val successful: Boolean,

@@ -1,6 +1,7 @@
 package android.tvz.hr.clienttracker.navigation
 
 
+import android.tvz.hr.clienttracker.clients_list.screen.ClientsListScreen
 import android.tvz.hr.clienttracker.login_user.screen.LoginUserScreen
 import android.tvz.hr.clienttracker.onboarding.screen.HomeScreen
 import android.tvz.hr.clienttracker.onboarding.screen.SplashScreen
@@ -35,6 +36,9 @@ fun SetupNavGraph(
         }
         composable(route = Screen.Login.route) {
             LoginUserScreen(navController = navController)
+        }
+        composable(route = Screen.ClientsListScreen.route){
+            ClientsListScreen(navController = navController)
         }
     }
 }

@@ -2,14 +2,14 @@ package android.tvz.hr.clienttracker.user_registration.viewmodel
 
 import android.app.Application
 import android.content.ContentValues.TAG
-import android.tvz.hr.clienttracker.core.local.User
-import android.tvz.hr.clienttracker.core.util.Result
-import android.tvz.hr.clienttracker.core.util.use_case.ValidatePassword
-import android.tvz.hr.clienttracker.core.util.use_case.ValidateRepeatedPassword
-import android.tvz.hr.clienttracker.core.util.use_case.ValidateUsername
+import android.tvz.hr.clienttracker.common.util.Result
+import android.tvz.hr.clienttracker.common.util.use_case.ValidatePassword
+import android.tvz.hr.clienttracker.common.util.use_case.ValidateRepeatedPassword
+import android.tvz.hr.clienttracker.common.util.use_case.ValidateUsername
+import android.tvz.hr.clienttracker.data.domain.model.User
 import android.tvz.hr.clienttracker.user_registration.domain.RegistrationFormEvent
 import android.tvz.hr.clienttracker.user_registration.domain.RegistrationFormState
-import android.tvz.hr.clienttracker.user_registration.domain.repository.ClientRepository
+import android.tvz.hr.clienttracker.user_registration.domain.repository.UserRepository
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,7 +29,7 @@ class RegistrationViewModel @Inject constructor(
     private val validatePassword: ValidatePassword,
     private val validateRepeatedPassword: ValidateRepeatedPassword,
     private val applicationContext: Application,
-    private val clientRepository: ClientRepository,
+    private val userRepository: UserRepository,
 ) : ViewModel() {
 
     var state by mutableStateOf(RegistrationFormState())
@@ -84,7 +84,7 @@ class RegistrationViewModel @Inject constructor(
     private fun createUser(username: String, password: String) = viewModelScope.launch {
         _registerState.emit(Result.Loading())
         val newUser = User(username, password)
-        _registerState.emit(clientRepository.registerUser(newUser))
+        _registerState.emit(userRepository.registerUser(newUser))
 
     }
 }

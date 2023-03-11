@@ -1,13 +1,18 @@
 package android.tvz.hr.clienttracker.di
 
 import android.content.Context
-import android.tvz.hr.clienttracker.core.remote.ClientTrackerApi
-import android.tvz.hr.clienttracker.core.util.SessionManager
+import android.tvz.hr.clienttracker.clients_list.data.repository.ClientRepositoryImplementation
+import android.tvz.hr.clienttracker.clients_list.domain.repository.ClientsRepository
+import android.tvz.hr.clienttracker.common.util.SessionManager
+import android.tvz.hr.clienttracker.data.local.database.ClientDatabase
+import android.tvz.hr.clienttracker.data.local.entities.ClientDao
+import android.tvz.hr.clienttracker.data.remote.ClientTrackerApi
 import android.tvz.hr.clienttracker.login_user.data.repository.UserLoginRepositoryImplementation
 import android.tvz.hr.clienttracker.login_user.domain.repository.UserLoginRepository
 import android.tvz.hr.clienttracker.onboarding.util.OnboardingPrefs
-import android.tvz.hr.clienttracker.user_registration.data.repository.ClientRepositoryImplementation
-import android.tvz.hr.clienttracker.user_registration.domain.repository.ClientRepository
+import android.tvz.hr.clienttracker.user_registration.data.repository.UserRepositoryImplementation
+import android.tvz.hr.clienttracker.user_registration.domain.repository.UserRepository
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -54,13 +59,25 @@ object MainModule {
 
     @Singleton
     @Provides
-    fun provideClientRepository(
+    fun provideUserRepository(
         clientTrackerApi: ClientTrackerApi,
         sessionManager: SessionManager
-    ): ClientRepository {
-        return ClientRepositoryImplementation(
+    ): UserRepository {
+        return UserRepositoryImplementation(
             clientTrackerApi,
             sessionManager
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideClientRepository(
+        clientTrackerApi: ClientTrackerApi,
+        clientDao: ClientDao
+    ): ClientsRepository {
+        return ClientRepositoryImplementation(
+            clientTrackerApi,
+            clientDao
         )
     }
 
@@ -75,6 +92,20 @@ object MainModule {
             sessionManager
         )
     }
+    @Singleton
+    @Provides
+    fun provideDatabase(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(
+        context,
+        ClientDatabase::class.java,
+        CLIENT_DATABASE
+    ).build()
+
+    @Singleton
+    @Provides
+    fun provideClientDao(clientDatabase: ClientDatabase) = clientDatabase.clientDao()
 }
 
-const val BASE_URL = "http://192.168.1.5:8080/"
+const val BASE_URL = "http://192.168.1.79:8081/"
+private const val CLIENT_DATABASE = "ClientDatabase"
