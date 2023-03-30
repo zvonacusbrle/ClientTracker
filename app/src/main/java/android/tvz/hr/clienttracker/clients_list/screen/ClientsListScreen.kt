@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import timber.log.Timber
 
 
@@ -30,7 +31,7 @@ fun ClientsListScreen(
     val clientResponse = viewModel.clientResponse.value
 
     if (clientResponse.data.isNotEmpty()) {
-        ClientItemList(clientResponse.data)
+        ClientItemList(clientResponse.data, navController)
     }
 
     if (clientResponse.error.isNotEmpty())
@@ -43,12 +44,12 @@ fun ClientsListScreen(
 }
 
 @Composable
-fun ClientItemList(data: List<Client>) {
+fun ClientItemList(data: List<Client>, navController: NavController) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
-        itemsIndexed(data) { index, client ->
-            ClientCardItem(client)
+        itemsIndexed(data) { _, client ->
+            ClientCardItem(client, navController)
         }
     }
 }
@@ -63,7 +64,8 @@ fun ClientCardPreview() {
             1,
             "Pero",
             "https://img.mensxp.com/media/content/2018/Dec/the-king-ronnie-colemans-2018-documentary-is-quite-painful-to-watch-amp-yet-its-inspiring-1400x653-1545125563.jpg?w=820&h=540&cc=1"
-        )
+        ),
+        navController = rememberNavController()
     )
 }
 

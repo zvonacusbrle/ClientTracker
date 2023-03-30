@@ -1,6 +1,7 @@
 package android.tvz.hr.clienttracker.navigation
 
 
+import android.tvz.hr.clienttracker.client_details.ClientDetailsScreen
 import android.tvz.hr.clienttracker.clients_list.screen.ClientsListScreen
 import android.tvz.hr.clienttracker.login_user.screen.LoginUserScreen
 import android.tvz.hr.clienttracker.onboarding.screen.HomeScreen
@@ -9,8 +10,10 @@ import android.tvz.hr.clienttracker.onboarding.screen.WelcomeScreen
 import android.tvz.hr.clienttracker.user_registration.screen.RegisterUserScreen
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 
 @Composable
 fun SetupNavGraph(
@@ -37,8 +40,25 @@ fun SetupNavGraph(
         composable(route = Screen.Login.route) {
             LoginUserScreen(navController = navController)
         }
-        composable(route = Screen.ClientsListScreen.route){
+        composable(route = Screen.ClientsListScreen.route) {
             ClientsListScreen(navController = navController)
         }
+
+        composable(
+            route = Screen.ClientDetailsScreen.route,
+            arguments = listOf(navArgument(CLIENT_ID_KEY) {
+                type = NavType.IntType
+            })
+        ) {
+
+            ClientDetailsScreen(
+                navController = navController, clientId = it.arguments?.getInt(
+                    CLIENT_ID_KEY
+                )
+            )
+        }
+
     }
 }
+
+val CLIENT_ID_KEY = "client_id_key"

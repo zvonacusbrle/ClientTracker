@@ -8,4 +8,13 @@ sealed class Screen(val route: String) {
     object Login : Screen(route = "login_screen")
 
     object ClientsListScreen : Screen(route = "clients_list_screen")
+
+    object ClientDetailsScreen : Screen(route = "client_details_screen/{$CLIENT_ID_KEY}"){
+        fun passClientId(id: Int): String {
+            return this.route.replace(oldValue = "{$CLIENT_ID_KEY}", newValue = id.toString())
+        }
+    }
+
+
+
 }
