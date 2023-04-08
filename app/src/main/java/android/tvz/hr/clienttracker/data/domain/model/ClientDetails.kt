@@ -7,6 +7,4 @@ data class ClientDetails(
     val picture: String? = null,
     val aboutUser: String? = null,
     val weight: List<Double> ?= null
-) {
-
-}
+)

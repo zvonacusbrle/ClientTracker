@@ -23,10 +23,6 @@ interface ClientTrackerApi {
     @GET("/clients")
     suspend fun getClientsData(): List<ClientResponse>
 
-    @Headers("Content-Type: application/json")
-    @GET("/clients/{id}")
-    suspend fun getClientsDetailsById(
-        @Path("id") getById:String
-    ): ClientResponse
+
 
 }
