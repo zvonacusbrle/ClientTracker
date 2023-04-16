@@ -15,7 +15,10 @@ import coil.compose.rememberImagePainter
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun BackgroundImage(picture: String?) {
+fun BackgroundContent(
+    picture: String?,
+    imageFraction: Float = 1f
+) {
     val painter =
         rememberImagePainter(
             data = picture
@@ -32,7 +35,7 @@ fun BackgroundImage(picture: String?) {
         Image(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(1f)
+                .fillMaxHeight(imageFraction)
                 .align(Alignment.TopStart),
             painter = painter,
             contentScale = ContentScale.Crop,

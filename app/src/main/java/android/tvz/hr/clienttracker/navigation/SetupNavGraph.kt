@@ -1,7 +1,7 @@
 package android.tvz.hr.clienttracker.navigation
 
 
-import android.tvz.hr.clienttracker.client_details.ClientDetailsScreen
+import android.tvz.hr.clienttracker.client_details.screen.ClientDetailsScreen
 import android.tvz.hr.clienttracker.clients_list.screen.ClientsListScreen
 import android.tvz.hr.clienttracker.login_user.screen.LoginUserScreen
 import android.tvz.hr.clienttracker.onboarding.screen.HomeScreen
