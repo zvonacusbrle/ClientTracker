@@ -5,6 +5,7 @@ package android.tvz.hr.clienttracker.client_details.components
 import android.graphics.Paint
 import android.graphics.PointF
 import android.tvz.hr.clienttracker.R
+import android.tvz.hr.clienttracker.ui.theme.graph_color
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -119,7 +120,7 @@ fun ClientWeightGraph(
                 fillPath,
                 brush = Brush.verticalGradient(
                     listOf(
-                        Color.Cyan,
+                        Color(color = graph_color.toArgb()),
                         Color.Transparent,
                     ),
                     endY = size.height - yAxisSpace

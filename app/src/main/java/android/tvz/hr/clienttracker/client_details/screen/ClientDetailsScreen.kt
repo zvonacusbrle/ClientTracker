@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import timber.log.Timber
 
 @Composable
@@ -27,7 +28,7 @@ fun ClientDetailsScreen(
     Text(text = "Client ID: ${clientDetailsResponse.data} ")
 
     if (clientDetailsResponse.data != null) {
-        DetailsContent(clientDetailsResponse.data)
+        DetailsContent(clientDetailsResponse.data, navController)
     }
 
     if (clientDetailsResponse.error.isNotEmpty())
@@ -40,7 +41,7 @@ fun ClientDetailsScreen(
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun DetailsContent(client: ClientDetails) {
+fun DetailsContent(client: ClientDetails, navController: NavController) {
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Collapsed)
     )
@@ -55,10 +56,12 @@ fun DetailsContent(client: ClientDetails) {
             BottomSheetContent(client.name, client.weight)
         },
         content = {
-
             BackgroundContent(
                 picture = client.picture,
                 imageFraction = currentSheetFraction,
+                onBackClicked = {
+                    navController.popBackStack()
+                }
             )
         }
 
@@ -93,6 +96,7 @@ fun DetailsContentPreview() {
             age = 2,
             name = "3"
         ),
+        navController = rememberNavController(),
     )
 }
 

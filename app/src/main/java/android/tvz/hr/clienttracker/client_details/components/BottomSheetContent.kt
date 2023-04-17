@@ -1,10 +1,9 @@
 package android.tvz.hr.clienttracker.client_details.components
 
+import android.graphics.Picture
 import android.tvz.hr.clienttracker.R
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material3.Text
@@ -12,7 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -31,12 +32,16 @@ fun BottomSheetContent(clientName: String, clientWeight: List<Double>?) {
 
         ) {
             Text(
-                modifier = Modifier.weight(8f),
                 text = clientName,
                 fontSize = MaterialTheme.typography.h4.fontSize,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
+            Spacer(modifier = Modifier.height(30.dp))
+
+            ClientWeightCard(clientWeight?.last())
+            Spacer(modifier = Modifier.height(10.dp))
+
             clientWeight?.let {
                 ClientWeightGraph(modifier = Modifier,
                     points = it,
@@ -45,4 +50,19 @@ fun BottomSheetContent(clientName: String, clientWeight: List<Double>?) {
             }
         }
     }
+}
+
+@Composable
+fun ClientWeightCard(currentWeight: Double?) {
+    Row() {
+        val weightInKg = currentWeight?.times(10.0)
+        Image(painterResource(id = R.drawable.weight_64), "weight_image")
+        Text(text = "Current user weight $weightInKg kg")
+    }
+}
+
+@Composable
+@Preview
+fun BottomSheetContentTest(){
+    BottomSheetContent(clientName = "Miroslav", clientWeight = listOf(2.5, 3.3,4.4, 5.5,2.1,6.2 ))
 }
