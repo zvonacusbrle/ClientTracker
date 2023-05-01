@@ -1,6 +1,7 @@
 package android.tvz.hr.clienttracker.clients_list.screen
 
 
+import AppBottomNavigation
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.tvz.hr.clienttracker.clients_list.components.ClientCardItem
@@ -16,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import timber.log.Timber
 
@@ -24,7 +25,7 @@ import timber.log.Timber
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun ClientsListScreen(
-    navController: NavController
+    navController: NavHostController
 ) {
     val viewModel = hiltViewModel<ClientListViewModel>()
 
@@ -44,13 +45,14 @@ fun ClientsListScreen(
 }
 
 @Composable
-fun ClientItemList(data: List<Client>, navController: NavController) {
-    LazyColumn(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        itemsIndexed(data) { _, client ->
-            ClientCardItem(client, navController)
+fun ClientItemList(data: List<Client>, navController: NavHostController) {
+    Column(Modifier.fillMaxSize()) {
+        LazyColumn(modifier = Modifier.weight(1f)) {
+            itemsIndexed(data) { _, client ->
+                ClientCardItem(client, navController)
+            }
         }
+        AppBottomNavigation(navController = navController)
     }
 }
 

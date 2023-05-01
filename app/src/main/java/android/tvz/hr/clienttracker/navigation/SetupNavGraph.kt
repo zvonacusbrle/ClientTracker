@@ -1,6 +1,7 @@
 package android.tvz.hr.clienttracker.navigation
 
 
+import android.tvz.hr.clienttracker.calendar.CalendarScreen
 import android.tvz.hr.clienttracker.client_details.screen.ClientDetailsScreen
 import android.tvz.hr.clienttracker.clients_list.screen.ClientsListScreen
 import android.tvz.hr.clienttracker.login_user.screen.LoginUserScreen
@@ -57,6 +58,10 @@ fun SetupNavGraph(
                 )
             )
         }
+        composable(route = Screen.CalendarScreen.route) {
+            CalendarScreen(navController = navController)
+        }
+
 
     }
 }
