@@ -1,9 +1,8 @@
 package android.tvz.hr.clienttracker.client_details.viewmodel
 
-import android.content.ContentValues.TAG
 import android.tvz.hr.clienttracker.client_details.domain.repository.ClientDetailsRepository
 import android.tvz.hr.clienttracker.client_details.domain.use_case.GetClientDetailsUseCase
-import android.tvz.hr.clienttracker.clients_list.domain.use_case.GetClientDataUseCase
+import android.tvz.hr.clienttracker.common.util.Result
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -12,8 +11,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import android.tvz.hr.clienttracker.common.util.Result
-import android.util.Log
 
 @HiltViewModel
 class ClientDetailsViewModel @Inject constructor(
@@ -23,8 +20,6 @@ class ClientDetailsViewModel @Inject constructor(
     private val _clientDetailsResponse: MutableState<ClientDetailsState> =
         mutableStateOf(ClientDetailsState(isLoading = true))
     val clientDetailsResponse: State<ClientDetailsState> = _clientDetailsResponse
-
-
 
     fun getClientDetailsById(clientId: Int) {
         viewModelScope.launch {

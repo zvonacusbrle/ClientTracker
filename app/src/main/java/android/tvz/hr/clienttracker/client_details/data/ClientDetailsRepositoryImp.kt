@@ -5,8 +5,6 @@ import android.tvz.hr.clienttracker.client_details.domain.repository.ClientDetai
 import android.tvz.hr.clienttracker.common.util.Result
 import android.tvz.hr.clienttracker.data.domain.model.ClientDetails
 import android.tvz.hr.clienttracker.data.local.entities.ClientDao
-import android.tvz.hr.clienttracker.data.remote.model.ClientResponse
-import timber.log.Timber
 import javax.inject.Inject
 
 class ClientDetailsRepositoryImp @Inject constructor(

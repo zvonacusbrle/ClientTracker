@@ -5,10 +5,14 @@ import android.tvz.hr.clienttracker.client_details.components.BackgroundContent
 import android.tvz.hr.clienttracker.client_details.components.BottomSheetContent
 import android.tvz.hr.clienttracker.client_details.viewmodel.ClientDetailsViewModel
 import android.tvz.hr.clienttracker.data.domain.model.ClientDetails
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material3.Text
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -25,8 +29,6 @@ fun ClientDetailsScreen(
     clientId?.let { viewModel.getClientDetailsById(clientId = it) }
     val clientDetailsResponse = viewModel.clientDetailsResponse.value
 
-    Text(text = "Client ID: ${clientDetailsResponse.data} ")
-
     if (clientDetailsResponse.data != null) {
         DetailsContent(clientDetailsResponse.data, navController)
     }
@@ -35,8 +37,20 @@ fun ClientDetailsScreen(
         Timber.tag(ContentValues.TAG).d("ClientsListScreen: ERROR")
 
     if (clientDetailsResponse.isLoading) {
-
+        LoadingScreen()
     }
+}
+
+@Composable
+fun LoadingScreen(){
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ){
+        CircularProgressIndicator()
+    }
+
 }
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -53,7 +67,7 @@ fun DetailsContent(client: ClientDetails, navController: NavController) {
         scaffoldState = scaffoldState,
         sheetPeekHeight = 150.dp,
         sheetContent = {
-            BottomSheetContent(client.name, client.weight)
+            BottomSheetContent(client.name, client.weight, client.height)
         },
         content = {
             BackgroundContent(

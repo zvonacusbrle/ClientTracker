@@ -19,6 +19,7 @@ fun ClientResponse.toClientEntity(): ClientEntity {
         age = age,
         picture = picture,
         aboutUser = aboutUser,
-        weight = weight
+        weight = weight,
+        height = height
     )
 }

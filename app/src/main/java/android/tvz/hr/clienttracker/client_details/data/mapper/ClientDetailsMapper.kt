@@ -1,10 +1,7 @@
 package android.tvz.hr.clienttracker.client_details.data.mapper
 
-import android.content.ContentValues.TAG
 import android.tvz.hr.clienttracker.data.domain.model.ClientDetails
 import android.tvz.hr.clienttracker.data.local.entities.ClientEntity
-import android.tvz.hr.clienttracker.data.remote.model.ClientResponse
-import android.util.Log
 
 fun ClientEntity.toClientDetails() : ClientDetails{
     return ClientDetails(
@@ -13,7 +10,8 @@ fun ClientEntity.toClientDetails() : ClientDetails{
         age = age,
         picture = picture,
         aboutUser = aboutUser,
-        weight = toListOfDoubles(weight = weight) ?: emptyList()
+        weight = toListOfDoubles(weight = weight) ?: emptyList(),
+        height = height
     )
 }
 

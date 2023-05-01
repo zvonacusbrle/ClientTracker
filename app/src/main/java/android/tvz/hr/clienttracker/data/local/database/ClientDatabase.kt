@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
     entities = [
         ClientEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 

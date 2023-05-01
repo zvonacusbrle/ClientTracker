@@ -1,6 +1,5 @@
 package android.tvz.hr.clienttracker.client_details.components
 
-import android.graphics.Picture
 import android.tvz.hr.clienttracker.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -17,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun BottomSheetContent(clientName: String, clientWeight: List<Double>?) {
+fun BottomSheetContent(clientName: String, clientWeight: List<Double>?, height: Double?) {
     Surface(
         modifier = Modifier
             .fillMaxSize(),
@@ -39,6 +38,9 @@ fun BottomSheetContent(clientName: String, clientWeight: List<Double>?) {
             )
             Spacer(modifier = Modifier.height(30.dp))
 
+            ClientHeightCard(height)
+            Spacer(modifier = Modifier.height(10.dp))
+
             ClientWeightCard(clientWeight?.last())
             Spacer(modifier = Modifier.height(10.dp))
 
@@ -49,6 +51,14 @@ fun BottomSheetContent(clientName: String, clientWeight: List<Double>?) {
                     verticalStep = 1 )
             }
         }
+    }
+}
+
+@Composable
+fun ClientHeightCard(height: Double?) {
+    Row(){
+        Image(painterResource(id = R.drawable.height_64), "weight_image")
+        Text(text = "Client height $height")
     }
 }
 
@@ -64,5 +74,9 @@ fun ClientWeightCard(currentWeight: Double?) {
 @Composable
 @Preview
 fun BottomSheetContentTest(){
-    BottomSheetContent(clientName = "Miroslav", clientWeight = listOf(2.5, 3.3,4.4, 5.5,2.1,6.2 ))
+    BottomSheetContent(
+        clientName = "Miroslav",
+        clientWeight = listOf(2.5, 3.3,4.4, 5.5,2.1,6.2 ),
+        height = 181.2
+    )
 }

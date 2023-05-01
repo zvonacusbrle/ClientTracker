@@ -7,4 +7,5 @@ data class ClientResponse(
     val picture: String? = null,
     val aboutUser: String? = null,
     val weight: String?=null,
+    val height: Double? = null
 )

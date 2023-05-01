@@ -6,5 +6,6 @@ data class ClientDetails(
     val age: Int,
     val picture: String? = null,
     val aboutUser: String? = null,
-    val weight: List<Double> ?= null
+    val weight: List<Double> ?= null,
+    val height: Double ?= null
 )
