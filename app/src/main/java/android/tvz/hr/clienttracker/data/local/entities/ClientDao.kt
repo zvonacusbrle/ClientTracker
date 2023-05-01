@@ -13,5 +13,8 @@ interface ClientDao {
     @Query("SELECT * FROM ClientEntity")
     fun getClients(): Flow<List<ClientEntity>>
 
+    @Query("SELECT * FROM ClientEntity WHERE id = :clientId")
+    fun getClientsDetailsById(clientId: Int) : ClientEntity
+
 
 }

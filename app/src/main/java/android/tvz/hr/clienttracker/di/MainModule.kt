@@ -1,6 +1,8 @@
 package android.tvz.hr.clienttracker.di
 
 import android.content.Context
+import android.tvz.hr.clienttracker.client_details.data.ClientDetailsRepositoryImp
+import android.tvz.hr.clienttracker.client_details.domain.repository.ClientDetailsRepository
 import android.tvz.hr.clienttracker.clients_list.data.repository.ClientRepositoryImplementation
 import android.tvz.hr.clienttracker.clients_list.domain.repository.ClientsRepository
 import android.tvz.hr.clienttracker.common.util.SessionManager
@@ -83,6 +85,16 @@ object MainModule {
 
     @Singleton
     @Provides
+    fun provideClientDetailsRepository(
+        clientDao: ClientDao,
+    ): ClientDetailsRepository {
+        return ClientDetailsRepositoryImp(
+            clientDao,
+        )
+    }
+
+    @Singleton
+    @Provides
     fun provideUserLoginRepository(
         clientTrackerApi: ClientTrackerApi,
         sessionManager: SessionManager
@@ -100,12 +112,14 @@ object MainModule {
         context,
         ClientDatabase::class.java,
         CLIENT_DATABASE
-    ).build()
+    )
+        .fallbackToDestructiveMigration()
+        .build()
 
     @Singleton
     @Provides
     fun provideClientDao(clientDatabase: ClientDatabase) = clientDatabase.clientDao()
 }
 
-const val BASE_URL = "http://192.168.1.79:8081/"
+const val BASE_URL = "http://192.168.1.3:8081/"
 private const val CLIENT_DATABASE = "ClientDatabase"

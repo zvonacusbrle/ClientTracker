@@ -5,6 +5,7 @@ import android.tvz.hr.clienttracker.R
 import android.tvz.hr.clienttracker.clients_list.screen.CLIENT_ITEM_HEIGHT
 import android.tvz.hr.clienttracker.clients_list.screen.MEDIUM_PADDING
 import android.tvz.hr.clienttracker.data.domain.model.Client
+import android.tvz.hr.clienttracker.navigation.Screen
 import android.tvz.hr.clienttracker.ui.theme.Shapes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -24,13 +25,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun ClientCardItem(client: Client) {
+fun ClientCardItem(client: Client, navController: NavController) {
     val painter =
         rememberImagePainter(
             data = client.picture
@@ -53,7 +55,9 @@ fun ClientCardItem(client: Client) {
             )
 
 
-            .clickable {},
+            .clickable {
+                navController.navigate(route = Screen.ClientDetailsScreen.passClientId(client.id))
+            },
         contentAlignment = Alignment.BottomStart,
     ) {
         Surface(shape = Shapes.large) {
@@ -67,8 +71,7 @@ fun ClientCardItem(client: Client) {
         Surface(
             modifier = Modifier
                 .fillMaxHeight(0.2f)
-                .fillMaxWidth()
-                ,
+                .fillMaxWidth(),
             color = Color.Black.copy(alpha = ContentAlpha.medium),
             shape = RoundedCornerShape(
                 bottomStart = MEDIUM_PADDING,

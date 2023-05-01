@@ -119,6 +119,7 @@ val dark_onlight_purple = Color(0xFF002C70)
 val dark_light_purpleContainer = Color(0xFF1B438F)
 val dark_onlight_purpleContainer = Color(0xFFDAE2FF)
 
+val graph_color = Color(0xFFc1dff7)
 
 
 

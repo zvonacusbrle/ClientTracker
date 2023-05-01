@@ -6,4 +6,6 @@ data class ClientResponse(
     val age: Int,
     val picture: String? = null,
     val aboutUser: String? = null,
+    val weight: String?=null,
+    val height: Double? = null
 )

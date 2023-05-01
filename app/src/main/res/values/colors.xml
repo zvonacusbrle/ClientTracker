@@ -14,4 +14,5 @@
     <color name="light_purple">#dfe3f6</color>
     <color name="light_blue">#daf1f9</color>
     <color name="orange">#e37a56</color>
+    <color name="bottom_sheet">#f6f6f6</color>
 </resources>
