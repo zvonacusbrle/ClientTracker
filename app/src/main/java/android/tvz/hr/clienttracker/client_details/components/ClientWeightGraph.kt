@@ -91,12 +91,11 @@ fun ClientWeightGraph(
                     center = Offset(x1,y1.toFloat())
                 )
             }
-            /** calculating the connection points */
+
             for (i in 1 until coordinates.size) {
                 controlPoints1.add(PointF((coordinates[i].x + coordinates[i - 1].x) / 2, coordinates[i - 1].y))
                 controlPoints2.add(PointF((coordinates[i].x + coordinates[i - 1].x) / 2, coordinates[i].y))
             }
-            /** drawing the path */
             val stroke = Path().apply {
                 reset()
                 moveTo(coordinates.first().x, coordinates.first().y)
@@ -108,7 +107,6 @@ fun ClientWeightGraph(
                     )
                 }
             }
-            /** filling the area under the path */
             val fillPath = android.graphics.Path(stroke.asAndroidPath())
                 .asComposePath()
                 .apply {

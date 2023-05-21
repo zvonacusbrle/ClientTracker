@@ -70,7 +70,7 @@ fun ClientCardItem(client: Client, navController: NavController) {
         }
         Surface(
             modifier = Modifier
-                .fillMaxHeight(0.2f)
+                .fillMaxHeight(0.18f)
                 .fillMaxWidth(),
             color = Color.Black.copy(alpha = ContentAlpha.medium),
             shape = RoundedCornerShape(

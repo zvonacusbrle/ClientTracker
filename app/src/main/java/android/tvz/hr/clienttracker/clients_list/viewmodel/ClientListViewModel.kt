@@ -32,7 +32,6 @@ class ClientListViewModel @Inject constructor(
                     _clientResponse.value = ClientState(
                         isLoading = true
                     )
-                    delay(2000)
                 }.catch {
                     _clientResponse.value = ClientState(
                         error = it.message ?: "Something went wrong"
