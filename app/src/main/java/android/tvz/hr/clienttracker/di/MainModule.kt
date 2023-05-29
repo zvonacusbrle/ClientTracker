@@ -121,5 +121,5 @@ object MainModule {
     fun provideClientDao(clientDatabase: ClientDatabase) = clientDatabase.clientDao()
 }
 
-const val BASE_URL = "http://192.168.1.79:8080/"
+const val BASE_URL = "http://192.168.1.4:8080/"
 private const val CLIENT_DATABASE = "ClientDatabase"

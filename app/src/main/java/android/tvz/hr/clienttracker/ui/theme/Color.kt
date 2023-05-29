@@ -1,5 +1,6 @@
 package android.tvz.hr.clienttracker.ui.theme
 
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF00687B)
@@ -118,6 +119,10 @@ val dark_light_purple = Color(0xFFB1C5FF)
 val dark_onlight_purple = Color(0xFF002C70)
 val dark_light_purpleContainer = Color(0xFF1B438F)
 val dark_onlight_purpleContainer = Color(0xFFDAE2FF)
+
+val blueBrush = Brush.radialGradient(
+listOf(Color(0xFF2be4dc), Color(0xFF243484))
+)
 
 val graph_color = Color(0xFFc1dff7)
 
